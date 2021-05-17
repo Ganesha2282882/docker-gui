@@ -1,0 +1,46 @@
+#!/bin/bash
+
+action=`zenity --list --title "docker-gui" --text "Choose an action below:" --column "Actions" "Build an existing Dockerfile" "List images" "Pull an image" "Remove an image" "Start an image" "Exit" --height=280 --width=320`
+
+case $action in
+
+"Build an existing Dockerfile")
+folder=`zenity --file-selection --directory`
+name=`zenity --entry --title Name --text "What is the name of the new image?"`
+pkexec docker build -t $name "$folder"
+;;
+
+"List images")
+pkexec env DISPLAY=:0 bash -c '
+docker image ls > /tmp/CMD.docker.image.ls
+zenity --text-info --title "Images" --filename=/tmp/CMD.docker.image.ls --font=Monospace --width=640 --height=480
+'
+;;
+
+"Pull an image")
+name=`zenity --entry --title Name --text "What image do you want to pull?"`
+pkexec docker pull "$name"
+;;
+
+"Remove an image")
+name=`zenity --entry --title Name --text "What image do you want to remove?"`
+pkexec docker image rm -f "$name"
+;;
+
+"Start an image")
+name=`zenity --entry --title Name --text "What image do you want to start?"`
+pkexec env DISPLAY=:0 name="$name" bash -c '
+if docker image ls | grep -q $name; then
+xterm -T "Container" -e "docker run -it $name && (echo Exited normally. Press any key to continue.; read -s -n 1) || (echo Failed. Press any key to continue.; read -s -n 1)"
+else
+zenity --error --title "Error" --text "Image $name does not exist." --width=360
+fi
+'
+;;
+
+"Exit")
+exit 0
+;;
+esac
+
+exec /bin/bash $0

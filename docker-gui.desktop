@@ -1,0 +1,7 @@
+[Desktop Entry]
+
+Name=docker-gui
+Exec=docker-gui
+Icon=docker-256x256
+Type=Application
+Categories=Utility
