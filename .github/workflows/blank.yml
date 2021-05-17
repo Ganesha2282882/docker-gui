@@ -33,10 +33,10 @@ jobs:
           chmod +x ait
           
       - name: Shellcheck script
-          shellcheck usr/bin/docker-gui
+        run: shellcheck usr/bin/docker-gui
           
       - name: Create AppImage
-          make appimage AIT=./ait
+        run: make appimage AIT=./ait
           
           
     
