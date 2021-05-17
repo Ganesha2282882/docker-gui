@@ -13,7 +13,7 @@ pkexec docker build -t $name "$folder"
 "Edit an existing Dockerfile")
 folder=`zenity --file-selection --directory`
 cd "$folder"
-zenity --text-info --filename="Dockerfile" --editable --font=Monospace --width=854 --height=480 > /tmp/GUI.docker-gui.Edit
+zenity --text-info --title "Dockerfile editor" --filename="Dockerfile" --editable --font=Monospace --width=854 --height=480 > /tmp/GUI.docker-gui.Edit
 cat /tmp/GUI.docker-gui.Edit > Dockerfile
 ;;
 
