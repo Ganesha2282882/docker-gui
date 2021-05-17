@@ -11,4 +11,4 @@ install:
 	cp docker-256x256.png /usr/share/icons/hicolor/256x256/apps
 	
 uninstall:
-	rm -f /usr/share/applications/docker-gui.desktop /usr/local/bin/docker-gui
+	rm -f /usr/share/applications/docker-gui.desktop /usr/local/bin/docker-gui /usr/share/icons/hicolor/256x256/apps/docker-256x256.png
