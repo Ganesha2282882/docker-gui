@@ -1,6 +1,6 @@
 #!/bin/bash
 
-action=`zenity --list --title "docker-gui" --text "Choose an action below:" --column "Actions" "Build an existing Dockerfile" "Edit an existing Dockerfile" "List images" "Pull an image" "Remove an image" "Start an image" "Exit" --height=280 --width=320`
+action=`zenity --list --title "docker-gui" --text "Choose an action below:" --column "Actions" "Build an existing Dockerfile" "Edit an existing Dockerfile" "List images" "Pull an image" "Remove an image" "Start an image" "Exit" --height=300 --width=320`
 
 case $action in
 
