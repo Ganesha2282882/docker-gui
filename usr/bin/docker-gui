@@ -1,6 +1,6 @@
 #!/bin/bash
 
-action=`zenity --list --title "docker-gui" --text "Choose an action below:" --column "Actions" "Build an existing Dockerfile" "List images" "Pull an image" "Remove an image" "Start an image" "Exit" --height=280 --width=320`
+action=`zenity --list --title "docker-gui" --text "Choose an action below:" --column "Actions" "Build an existing Dockerfile" "Edit an existing Dockerfile" "List images" "Pull an image" "Remove an image" "Start an image" "Exit" --height=280 --width=320`
 
 case $action in
 
@@ -8,6 +8,13 @@ case $action in
 folder=`zenity --file-selection --directory`
 name=`zenity --entry --title Name --text "What is the name of the new image?"`
 pkexec docker build -t $name "$folder"
+;;
+
+"Edit an existing Dockerfile")
+folder=`zenity --file-selection --directory`
+cd "$folder"
+zenity --text-info --filename="Dockerfile" --editable --font=Monospace --width=854 --height=480 > /tmp/GUI.docker-gui.Edit
+cat /tmp/GUI.docker-gui.Edit > Dockerfile
 ;;
 
 "List images")
