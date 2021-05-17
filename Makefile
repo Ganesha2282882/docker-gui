@@ -2,7 +2,7 @@ all: docker-gui
 docker-gui:
 	cp usr/bin/docker-gui .
 	
-install:
+install: docker-gui
 	@mkdir -p /usr/local/bin /usr/share/applications
 	cp docker-gui /usr/local/bin
 	chown root:root /usr/local/bin/docker-gui
