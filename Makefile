@@ -15,3 +15,5 @@ uninstall:
 
 appimage:
 	$(AIT) .
+
+update: uninstall install
